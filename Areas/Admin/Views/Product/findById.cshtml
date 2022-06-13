@@ -1,0 +1,56 @@
+﻿@{
+    Layout = "_AdminLayout";
+
+}
+<h3>Product Detail</h3>
+  <div class="modal fade" id="modal_update" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+        aria-hidden="true">
+        <div class="modal-dialog" style="min-width:800px ;" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle"> Add product</h5>
+                    <button type="button" class="btn close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-8 md-6">
+                            <div class="form-group">
+                                <label for="">Product name</label>
+                                <input type="text" value="model.ProductName" name="" id="productName" class="form-control" placeholder=""
+                                    aria-describedby="helpId">
+                                <small id="helpId" class="text-muted">*</small>
+                            </div>
+                        </div>
+                        <div class="col-sm-8 md-6">
+                            <div class="form-group">
+                                <label for="">Price</label>
+                                <input type="number" value="" name="" id="productPrice" class="form-control" placeholder=""
+                                    aria-describedby="helpId">
+                                <small id="helpId" class="text-muted">VND</small>
+                            </div>
+                        </div>
+                         <div class="col-sm-12 md-6">
+                            <div class="form-group">
+                                <label for="">Attachments</label>
+                                <input type="file" multiple name="" id="files" class="form-control" placeholder=""
+                                    aria-describedby="helpId">
+                                <small id="helpId" class="text-muted">File Image</small>
+                            </div>
+                        </div>
+                         <div class="col-sm-12 md-6">
+                           <div class="form-group">
+                             <label for="">Description</label>
+                           <textarea  class="form-control" name="" id="description" cols="30" rows="10"></textarea>
+                           </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="UpdateProduct()">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>

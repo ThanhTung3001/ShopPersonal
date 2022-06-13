@@ -1,0 +1,111 @@
+﻿@{
+    Layout = "_AdminLayout";
+    var product = ViewData["Product"] as WebApp.Models.Product;
+}
+<h3>Product Detail</h3>
+
+<div class="row">
+    <div class="col-sm-8 md-6">
+        <div class="form-group">
+            <label for="">Product name</label>
+            <input type="text" value="@product.ProductName" name="" id="productName" class="form-control" placeholder=""
+                aria-describedby="helpId">
+            <small id="helpId" class="text-muted">*</small>
+        </div>
+    </div>
+    <div class="col-sm-8 md-6">
+        <div class="form-group">
+            <label for="">Price</label>
+            <input type="number" value="@product.Price" name="" id="productPrice" class="form-control" placeholder=""
+                aria-describedby="helpId">
+            <small id="helpId" class="text-muted">VND</small>
+        </div>
+    </div>
+    <div class="col-sm-12 md-6">
+        <div class="form-group">
+            <label for="">Attachments</label>
+            <input type="file" multiple name="" id="files" class="form-control" placeholder=""
+                aria-describedby="helpId">
+            <small id="helpId" class="text-muted">File Image</small>
+        </div>
+    </div>
+    <div class="col-sm-8 md-6">
+        <div class="form-group">
+            <label for="">Category</label>
+            <select class="form-control" name="" id="categorySelect">
+                @foreach (var category in ViewBag.Categories)
+                {
+                    <option value="@category.Id">@category.Name</option>
+                }
+            </select>
+        </div>
+    </div>
+    <div class="col-sm-12 md-6 d-flex">
+        <div class="row">
+            @foreach (var attachment in @product.Attachments)
+            {
+                <div class="col-sm-3">
+                    <div class="card" style="width: 200px;">
+                        <img class="card-img-top" src="/@attachment.Path" alt="Card image cap">
+                        <span aria-hidden="true" onclick="AddFileRemove(@attachment.Id,this)" id="close_icon">&times;</span>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="col-sm-12 md-6">
+        <div class="form-group">
+            <label for="">Description</label>
+            <textarea class="form-control" name="" id="description" cols="30" rows="10">@product.Description</textarea>
+        </div>
+    </div>
+</div>
+<div class="row d-flex justify-content-center">
+    <div class="col-sm-3"><button id="updateBtn" class="btn btn-primary lg-3">Update</button></div>
+</div>
+<script>
+    let arrayFile = [];
+
+    const AddFileRemove = (idFile, element) => {
+        element.parentElement.remove();
+        arrayFile.push(idFile);
+        fetch("/Admin/Product/DeleteFile?id=" + idFile, { method: "DELETE" })
+            .then(rs => {
+                return rs;
+            })
+    }
+    document.querySelector("#updateBtn").addEventListener('click', (event) => {
+        let name = document.querySelector("#productName").value;
+        let price = document.querySelector("#productPrice").value;
+        let description = document.querySelector("#description").value;
+        let files = document.querySelector("#files").files;
+        let CategoryId =document.querySelector("#categorySelect").value;
+
+        let data = {
+            CategoryId:CategoryId,
+            Id: @product.Id,
+            ProductName: name,
+            Description: description,
+            Price: price
+        }
+        let form = new FormData();
+        for (let i = 0; i < files.length; i++) {
+            form.append("files", files[i]);
+        }
+        form.append("product", JSON.stringify(data));
+
+        fetch("/Admin/Product/UpdateProduct", {
+            method: 'POST',
+            body: form
+        })
+            .then(data => {
+                if (data.status == 200) {
+                    alert("Add Success!")
+                    location.reload();
+                } else {
+                    alert("Add fail")
+                }
+            })
+    })
+
+</script>

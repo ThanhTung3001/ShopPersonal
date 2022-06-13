@@ -1,8 +1,0 @@
-﻿@using Microsoft.AspNetCore.Identity
-@inject Microsoft.AspNetCore.Identity.UserManager<IdentityUser> _userManager;
-@{
-
-    Layout = "_AdminLayout";
-}
-
-<h1> Wellcome to Admin @await _userManager.GetUserAsync(User)</h1>

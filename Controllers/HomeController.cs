@@ -11,6 +11,8 @@ namespace WebApp.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly ShopAppContext shopApp = new ShopAppContext();
+
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
@@ -20,6 +22,13 @@ namespace WebApp.Controllers
 
         public IActionResult Index()
         {
+            var products = shopApp.Products;
+            products.ToList().ForEach(product =>
+            {
+                product.Attachments = shopApp.Attachments.Where(attachment => attachment.IdProduct == product.Id).ToList();
+            });
+            ViewBag.Products = products;
+            ViewBag.Categories = shopApp.Categories;
             return View();
         }
 

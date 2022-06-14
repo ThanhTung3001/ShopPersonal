@@ -160,3 +160,6 @@ C:\Users\tunglvt\source\repos\WebApp\WebApp\bin\Debug\net5.0\Microsoft.OpenApi.d
 C:\Users\tunglvt\source\repos\WebApp\WebApp\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\tunglvt\source\repos\WebApp\WebApp\obj\Debug\net5.0\Razor\Areas\Admin\Views\Product\Get.cshtml.g.cs
 C:\Users\tunglvt\source\repos\WebApp\WebApp\obj\Debug\net5.0\WebApp.csproj.AssemblyReference.cache
+C:\Users\tunglvt\source\repos\WebApp\WebApp\obj\Debug\net5.0\Razor\Views\Product\Index.cshtml.g.cs
+C:\Users\tunglvt\source\repos\WebApp\WebApp\obj\Debug\net5.0\Razor\Views\Product\SingleProduct.cshtml.g.cs
+C:\Users\tunglvt\source\repos\WebApp\WebApp\obj\Debug\net5.0\Razor\Views\Shared\none_layout.cshtml.g.cs
